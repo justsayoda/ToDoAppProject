@@ -2,6 +2,7 @@ package com.qacart.todo.testcases;
 
 import com.qacart.todo.base.BaseTest;
 import com.qacart.todo.factory.DriverFactory;
+import com.qacart.todo.pages.LoginPage;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -16,9 +17,8 @@ public class TodoTest extends BaseTest {
     @Test
     public void shouldBeAbleToAddNewTodo(){
         driver.get("https://todo.qacart.com/todo");
-        driver.findElement(By.cssSelector("[data-testid=\"email\"]")).sendKeys("sayoda@gmail.com");
-        driver.findElement(By.cssSelector("[data-testid=\"password\"]")).sendKeys("123456@SA");
-        driver.findElement(By.cssSelector("[data-testid=\"submit\"]")).click();
+        LoginPage loginPage = new LoginPage(driver);
+        loginPage.login("sayoda@gmail.com", "123456@SA");
         driver.findElement(By.cssSelector("[data-testid=\"add\"]")).click();
         driver.findElement(By.cssSelector("[data-testid=\"new-todo\"]")).sendKeys("Learn Selenium");
         driver.findElement(By.cssSelector("[data-testid=\"submit-newTask\"]")).click();
@@ -29,9 +29,8 @@ public class TodoTest extends BaseTest {
     @Test
     public void shouldBeAbleToDeleteToDo(){
         driver.get("https://todo.qacart.com/todo");
-        driver.findElement(By.cssSelector("[data-testid=\"email\"]")).sendKeys("sayoda@gmail.com");
-        driver.findElement(By.cssSelector("[data-testid=\"password\"]")).sendKeys("123456@SA");
-        driver.findElement(By.cssSelector("[data-testid=\"submit\"]")).click();
+        LoginPage loginPage = new LoginPage(driver);
+        loginPage.login("sayoda@gmail.com", "123456@SA");
         driver.findElement(By.cssSelector("[data-testid=\"delete\"]")).click();
         boolean isNoToDoMessageIsDisplayed = driver.findElement(By.cssSelector("[data-testid=\"no-todos\"]")).isDisplayed();
         Assert.assertTrue(isNoToDoMessageIsDisplayed);
