@@ -16,8 +16,8 @@ public class LoginTest extends BaseTest {
 
     @Test
     public void ShouldBeAbleToLoginWithEmailAndPassword(){
-        driver.get("https://todo.qacart.com/login");
         LoginPage loginPage = new LoginPage(driver);
+        loginPage.load();
         loginPage.login("sayoda@gmail.com", "123456@SA");
 
         boolean isWelcomeDisplayed = driver.findElement(By.cssSelector("[data-testid=\"welcome\"]")).isDisplayed();

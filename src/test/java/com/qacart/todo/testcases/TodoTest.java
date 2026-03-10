@@ -16,8 +16,8 @@ public class TodoTest extends BaseTest {
 
     @Test
     public void shouldBeAbleToAddNewTodo(){
-        driver.get("https://todo.qacart.com/todo");
         LoginPage loginPage = new LoginPage(driver);
+        loginPage.load();
         loginPage.login("sayoda@gmail.com", "123456@SA");
         driver.findElement(By.cssSelector("[data-testid=\"add\"]")).click();
         driver.findElement(By.cssSelector("[data-testid=\"new-todo\"]")).sendKeys("Learn Selenium");
@@ -28,9 +28,10 @@ public class TodoTest extends BaseTest {
 
     @Test
     public void shouldBeAbleToDeleteToDo(){
-        driver.get("https://todo.qacart.com/todo");
         LoginPage loginPage = new LoginPage(driver);
+        loginPage.load();
         loginPage.login("sayoda@gmail.com", "123456@SA");
+
         driver.findElement(By.cssSelector("[data-testid=\"delete\"]")).click();
         boolean isNoToDoMessageIsDisplayed = driver.findElement(By.cssSelector("[data-testid=\"no-todos\"]")).isDisplayed();
         Assert.assertTrue(isNoToDoMessageIsDisplayed);
