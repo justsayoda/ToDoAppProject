@@ -3,6 +3,7 @@ package com.qacart.todo.testcases;
 import com.qacart.todo.base.BaseTest;
 import com.qacart.todo.factory.DriverFactory;
 import com.qacart.todo.pages.LoginPage;
+import com.qacart.todo.pages.ToDoPage;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -20,7 +21,8 @@ public class LoginTest extends BaseTest {
         loginPage.load();
         loginPage.login("sayoda@gmail.com", "123456@SA");
 
-        boolean isWelcomeDisplayed = driver.findElement(By.cssSelector("[data-testid=\"welcome\"]")).isDisplayed();
+        ToDoPage todoPage = new ToDoPage(driver);
+        boolean isWelcomeDisplayed = todoPage.isWelcomeMessageIsDisplayed();
         Assert.assertTrue(isWelcomeDisplayed);
     }
 }

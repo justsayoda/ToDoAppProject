@@ -3,6 +3,7 @@ package com.qacart.todo.testcases;
 import com.qacart.todo.base.BaseTest;
 import com.qacart.todo.factory.DriverFactory;
 import com.qacart.todo.pages.LoginPage;
+import com.qacart.todo.pages.ToDoPage;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -19,10 +20,13 @@ public class TodoTest extends BaseTest {
         LoginPage loginPage = new LoginPage(driver);
         loginPage.load();
         loginPage.login("sayoda@gmail.com", "123456@SA");
-        driver.findElement(By.cssSelector("[data-testid=\"add\"]")).click();
+
+        ToDoPage toDoPage = new ToDoPage(driver);
+        toDoPage.clickOnPlusButton();
         driver.findElement(By.cssSelector("[data-testid=\"new-todo\"]")).sendKeys("Learn Selenium");
         driver.findElement(By.cssSelector("[data-testid=\"submit-newTask\"]")).click();
-        String actualResult = driver.findElement(By.cssSelector("[data-testid=\"todo-item\"]")).getText();
+
+        String actualResult = toDoPage.getToDoText();
         Assert.assertEquals(actualResult, "Learn Selenium");
     }
 
@@ -32,8 +36,9 @@ public class TodoTest extends BaseTest {
         loginPage.load();
         loginPage.login("sayoda@gmail.com", "123456@SA");
 
-        driver.findElement(By.cssSelector("[data-testid=\"delete\"]")).click();
-        boolean isNoToDoMessageIsDisplayed = driver.findElement(By.cssSelector("[data-testid=\"no-todos\"]")).isDisplayed();
+        ToDoPage toDoPage = new ToDoPage(driver);
+        toDoPage.clickOnDeleteButton();
+        boolean isNoToDoMessageIsDisplayed = toDoPage.isNoToDoMessageDisplayed();
         Assert.assertTrue(isNoToDoMessageIsDisplayed);
     }
 
