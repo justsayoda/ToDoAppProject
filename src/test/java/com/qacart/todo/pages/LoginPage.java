@@ -24,9 +24,10 @@ public class LoginPage extends BasePage {
         driver.get("https://todo.qacart.com/todo");
     }
 
-    public void login(String email, String password) {
+    public ToDoPage login(String email, String password) {
         emailInput.sendKeys(email);
         passwordInput.sendKeys(password);
         submit.click();
+        return new ToDoPage(driver);
     }
 }

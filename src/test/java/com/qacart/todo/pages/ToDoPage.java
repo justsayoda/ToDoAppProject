@@ -31,8 +31,9 @@ public class ToDoPage extends BasePage {
         return welcomeMessage.isDisplayed();
     }
 
-    public void clickOnPlusButton() {
+    public NewToDoPage clickOnPlusButton() {
         addButton.click();
+        return new NewToDoPage(driver);
     }
 
     public String getToDoText() {
