@@ -20,7 +20,6 @@ public class LoginTest extends BaseTest {
         LoginPage loginPage = new LoginPage(driver);
         loginPage.load();
         loginPage.login("sayoda@gmail.com", "123456@SA");
-
         ToDoPage todoPage = new ToDoPage(driver);
         boolean isWelcomeDisplayed = todoPage.isWelcomeMessageIsDisplayed();
         Assert.assertTrue(isWelcomeDisplayed);
