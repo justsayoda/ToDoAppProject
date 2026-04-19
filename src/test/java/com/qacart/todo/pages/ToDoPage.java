@@ -40,8 +40,9 @@ public class ToDoPage extends BasePage {
         return toDoItem.getText();
     }
 
-    public void clickOnDeleteButton() {
+    public ToDoPage clickOnDeleteButton() {
         deleteButton.click();
+        return this;
     }
 
     public boolean isNoToDoMessageDisplayed() {

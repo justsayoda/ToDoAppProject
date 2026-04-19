@@ -20,8 +20,9 @@ public class LoginPage extends BasePage {
     @FindBy(css = "[data-testid=\"submit\"]")
     private WebElement submit;
 
-    public void load() {
+    public LoginPage load() {
         driver.get("https://todo.qacart.com/todo");
+        return this;
     }
 
     public ToDoPage login(String email, String password) {

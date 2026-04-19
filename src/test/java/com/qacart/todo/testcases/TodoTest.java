@@ -19,23 +19,25 @@ public class TodoTest extends BaseTest {
     @Test
     public void shouldBeAbleToAddNewTodo(){
         LoginPage loginPage = new LoginPage(driver);
-        loginPage.load();
-        ToDoPage toDoPage = loginPage.login("sayoda@gmail.com", "123456@SA");
-        NewToDoPage newToDoPage = toDoPage.clickOnPlusButton();
-        newToDoPage.addNewTask("Learn Selenium");
+        String actualResult = loginPage
+                .load()
+                .login("sayoda@gmail.com","123456@SA")
+                .clickOnPlusButton()
+                .addNewTask("Learn Selenium")
+                .getToDoText();
 
-        String actualResult = toDoPage.getToDoText();
         Assert.assertEquals(actualResult, "Learn Selenium");
     }
 
     @Test
     public void shouldBeAbleToDeleteToDo(){
         LoginPage loginPage = new LoginPage(driver);
-        loginPage.load();
-        ToDoPage toDoPage = loginPage.login("sayoda@gmail.com", "123456@SA");
+        boolean isNoToDoMessageIsDisplayed = loginPage
+                .load()
+                .login("sayoda@gmail.com","123456@SA")
+                .clickOnDeleteButton()
+                .isNoToDoMessageDisplayed();
 
-        toDoPage.clickOnDeleteButton();
-        boolean isNoToDoMessageIsDisplayed = toDoPage.isNoToDoMessageDisplayed();
         Assert.assertTrue(isNoToDoMessageIsDisplayed);
     }
 
